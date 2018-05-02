@@ -1,0 +1,15 @@
+version: '2'
+services:
+  # Python/Django
+  python:
+    build:
+      context: . # We set this context to load the app requirements when building the image
+      dockerfile: ./docker/python/Dockerfile
+    volumes:
+      # include the code of our app
+      - ./:/app
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    expose:
+      - "8000"
